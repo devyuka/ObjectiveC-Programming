@@ -13,8 +13,7 @@
 }
 
 - (void) generateQuestion {
-    NSString *generatedQuestion = [NSString stringWithFormat:@"%ld + %ld ?", super.rightValue, super.leftValue];
-    super.question = generatedQuestion;
+    super.question = [NSString stringWithFormat:@"%ld + %ld ?", super.rightValue, super.leftValue];
     super.answer = super.rightValue + super.leftValue;
 }
 

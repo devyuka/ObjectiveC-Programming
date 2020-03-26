@@ -6,7 +6,7 @@
 {
     self = [super init];
     if (self) {
-        _questionSubclassNames = @[@"AdditionQuestion", @"SubtractionQuestion"];
+        _questionSubclassNames = @[@"AdditionQuestion", @"SubtractionQuestion", @"MultiplicationQuestion", @"DivisionQuestion"];
         
     }
     return self;
