@@ -2,6 +2,6 @@
 
 @interface InputHandler : NSObject
 
-+ (NSString *) handleInput;
+- (NSString *) handleInput;
 
 @end

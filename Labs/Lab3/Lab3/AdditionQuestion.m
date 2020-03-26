@@ -1,4 +1,5 @@
 #import "AdditionQuestion.h"
+#import "Question.h"
 
 @implementation AdditionQuestion
 
@@ -6,13 +7,15 @@
 {
     self = [super init];
     if (self) {
-        NSInteger randomNumL = arc4random_uniform(90) + 10;
-        NSInteger randomNumR = arc4random_uniform(90) + 10;
-        NSString *generatedQuestion = [NSString stringWithFormat:@"%ld + %ld ?", randomNumL, randomNumR];
-        _question = generatedQuestion;
-        _answer = randomNumL + randomNumR;
+        [self generateQuestion];
     }
     return self;
+}
+
+- (void) generateQuestion {
+    NSString *generatedQuestion = [NSString stringWithFormat:@"%ld + %ld ?", super.rightValue, super.leftValue];
+    super.question = generatedQuestion;
+    super.answer = super.rightValue + super.leftValue;
 }
 
 @end

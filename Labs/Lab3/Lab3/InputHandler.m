@@ -2,7 +2,7 @@
 
 @implementation InputHandler
 
-+ (NSString *) handleInput {
+- (NSString *) handleInput {
     char inputChars[255];
     char *result = fgets(inputChars, 255, stdin);
     

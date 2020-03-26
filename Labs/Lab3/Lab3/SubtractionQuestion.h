@@ -1,6 +1,6 @@
 #import "Question.h"
 
-@interface AdditionQuestion : Question
+@interface SubtractionQuestion : Question
 
 - (void) generateQuestion;
 
