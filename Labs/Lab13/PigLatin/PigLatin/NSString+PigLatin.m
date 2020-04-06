@@ -1,7 +1,6 @@
 #import "NSString+PigLatin.h"
 #import <AppKit/AppKit.h>
 
-
 @implementation NSString (PigLatin)
 
 -(NSString *) convertToPigLatin: (NSString *)input{
@@ -16,7 +15,6 @@
         if([vowels containsObject:[word substringToIndex:1]]){
             continue;
         }else if([clusters containsObject:[word substringWithRange:NSMakeRange(0, 2)]]){
-           
             [wordsArray replaceObjectAtIndex:i withObject: [self convertToPigLatinUtil:word range:2]];
         }else{
             [wordsArray replaceObjectAtIndex:i withObject: [self convertToPigLatinUtil:word range:1]];
