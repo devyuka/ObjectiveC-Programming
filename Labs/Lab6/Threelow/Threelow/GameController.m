@@ -23,5 +23,9 @@
     }
 }
 
+-(void) resetDice{
+    [_heldDiceArray removeAllObjects];
+}
+
 @end
 

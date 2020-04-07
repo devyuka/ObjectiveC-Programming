@@ -17,6 +17,7 @@ int main(int argc, const char * argv[]) {
 
             printf("'roll' to roll the dice\n");
             printf("'hold' to hold a dice\n");
+            printf("'reset' to un-hold all dice\n");
             
             char str[10];
             fgets (str, 10, stdin);
@@ -38,6 +39,8 @@ int main(int argc, const char * argv[]) {
                     scanf("%d", &index);
                     [gameController holdDie:index];
                     fflush(stdin);
+                }else if([inputString isEqualToString:@"reset"]){
+                    [gameController resetDice];
                 }else{
                     NSLog(@"Enter a valid input.");
                     continue;
