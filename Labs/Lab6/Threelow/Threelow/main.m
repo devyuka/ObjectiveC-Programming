@@ -46,14 +46,9 @@ int main(int argc, const char * argv[]) {
                     continue;
                 }
             
-                for(Dice *dice in gameController.diceArray){
-                    if([gameController.heldDiceArray containsObject:dice]){
-                        NSLog(@"[%ld]", (long)dice.currentValue);
-                    }else{
-                        NSLog(@"%ld", (long)dice.currentValue);
-                    }
-                }
-            }
+            [gameController print];
+            
+        }
     }
     return 0;
 }

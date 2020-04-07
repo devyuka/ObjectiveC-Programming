@@ -3,8 +3,10 @@
 @interface Dice : NSObject
 
 @property NSInteger currentValue;
+@property BOOL held;
 
-- (void) randomizeValue;
+-(void) randomizeValue;
 
+-(NSString *) convertToUnicodeSymbol;
 
 @end

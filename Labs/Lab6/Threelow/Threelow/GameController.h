@@ -4,11 +4,14 @@
 
 @property(nonatomic, strong) NSArray *diceArray;
 @property(nonatomic, strong) NSMutableArray *heldDiceArray;
+@property NSInteger totalScore;
 
 -(instancetype) initWithDiceArray:(NSArray *) diceArray;
 
 -(void) holdDie:(int) index;
 
 -(void) resetDice;
+
+-(void) print;
 
 @end

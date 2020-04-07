@@ -8,6 +8,7 @@
     if (self) {
         _diceArray = diceArray;
         _heldDiceArray = [NSMutableArray arrayWithCapacity:6];
+        _totalScore = 0;
     
     }
     return self;
@@ -16,15 +17,43 @@
 -(void) holdDie:(int) index{
     Dice *selectedDice =[_diceArray objectAtIndex:(NSInteger) index];
     
-    if([_heldDiceArray containsObject:selectedDice]){
+    if(selectedDice.held){
         [_heldDiceArray removeObject:selectedDice];
     }else{
         [_heldDiceArray addObject:selectedDice];
     }
+    
+    selectedDice.held = !selectedDice.held;
 }
 
 -(void) resetDice{
     [_heldDiceArray removeAllObjects];
+}
+
+-(NSInteger) calcScore{
+    _totalScore = 0;
+    
+    for(Dice *dice in _heldDiceArray){
+        _totalScore += dice.currentValue;
+    }
+    return _totalScore;
+}
+
+-(void) print{
+    NSMutableString *allDice = [NSMutableString string];
+    
+    for(Dice *dice in _diceArray){
+        [allDice appendString:[dice convertToUnicodeSymbol]];
+        [allDice appendString:@" "];
+    }
+    
+    NSLog(@"-------------------");
+    NSLog(@"-- Current Dice  --");
+    NSLog(@"%@", allDice);
+    NSLog(@"");
+    NSLog(@"--  Total Score  --");
+    NSLog(@"Score : %d", (int) [self calcScore]);
+    NSLog(@"-------------------");
 }
 
 @end
