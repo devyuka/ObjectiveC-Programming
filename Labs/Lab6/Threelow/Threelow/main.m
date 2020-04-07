@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "Dice.h"
+#import "GameController.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -10,8 +11,10 @@ int main(int argc, const char * argv[]) {
         Dice *dice5 = [Dice new];
         NSArray *diceArray = @[dice1, dice2, dice3, dice4, dice5];
         
+        GameController *gameController = [[GameController alloc] initWithDiceArray:diceArray];
+        
         while (TRUE) {
-            
+
             printf("'roll' to roll the dice\n");
             
             char str[10];
@@ -22,14 +25,27 @@ int main(int argc, const char * argv[]) {
             inputString = [inputString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             
                 if([inputString isEqualToString:@"roll"]){
-                    for(Dice *dice in diceArray){
-                        [dice randomizeValue];
+                    for(Dice *dice in gameController.diceArray){
+                        if(![gameController.heldDiceArray containsObject:dice]){
+                            [dice randomizeValue];
+                        }
+                     
                     }
+                    
+                    for(Dice *dice in gameController.diceArray){
+                        if([gameController.heldDiceArray containsObject:dice]){
+                            NSLog(@"[%ld]", (long)dice.currentValue);
+                        }else{
+                            NSLog(@"%ld", (long)dice.currentValue);
+                        }
+
+                    }
+                    
+                    NSLog(@"Enter index number you want to hold.");
+                    int index;
+                    scanf("%d", &index);
+                    [gameController holdDie:index];
                 }
-                for(Dice *dice in diceArray){
-                    NSLog(@"%ld", (long)dice.currentValue);
-                }
-                
             }
         
     }
