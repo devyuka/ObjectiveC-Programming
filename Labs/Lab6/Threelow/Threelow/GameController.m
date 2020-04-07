@@ -14,7 +14,13 @@
 }
 
 -(void) holdDie:(int) index{
-    [_heldDiceArray addObject:[_diceArray objectAtIndex:(NSInteger) index]];
+    Dice *selectedDice =[_diceArray objectAtIndex:(NSInteger) index];
+    
+    if([_heldDiceArray containsObject:selectedDice]){
+        [_heldDiceArray removeObject:selectedDice];
+    }else{
+        [_heldDiceArray addObject:selectedDice];
+    }
 }
 
 @end

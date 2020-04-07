@@ -16,6 +16,7 @@ int main(int argc, const char * argv[]) {
         while (TRUE) {
 
             printf("'roll' to roll the dice\n");
+            printf("'hold' to hold a dice\n");
             
             char str[10];
             fgets (str, 10, stdin);
@@ -31,23 +32,25 @@ int main(int argc, const char * argv[]) {
                         }
                      
                     }
-                    
-                    for(Dice *dice in gameController.diceArray){
-                        if([gameController.heldDiceArray containsObject:dice]){
-                            NSLog(@"[%ld]", (long)dice.currentValue);
-                        }else{
-                            NSLog(@"%ld", (long)dice.currentValue);
-                        }
-
-                    }
-                    
-                    NSLog(@"Enter index number you want to hold.");
+                }else if([inputString isEqualToString:@"hold"]){
+                    NSLog(@"Enter the number of the die:");
                     int index;
                     scanf("%d", &index);
                     [gameController holdDie:index];
+                    fflush(stdin);
+                }else{
+                    NSLog(@"Enter a valid input.");
+                    continue;
+                }
+            
+                for(Dice *dice in gameController.diceArray){
+                    if([gameController.heldDiceArray containsObject:dice]){
+                        NSLog(@"[%ld]", (long)dice.currentValue);
+                    }else{
+                        NSLog(@"%ld", (long)dice.currentValue);
+                    }
                 }
             }
-        
     }
     return 0;
 }
