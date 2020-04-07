@@ -35,9 +35,14 @@ int main(int argc, const char * argv[]) {
                     }
                 }else if([inputString isEqualToString:@"hold"]){
                     NSLog(@"Enter the number of the die:");
-                    int index;
-                    scanf("%d", &index);
-                    [gameController holdDie:index];
+                    int number;
+                    scanf("%d", &number);
+                    if(number < 1 || number > 5){
+                        NSLog(@"The number is invalid.");
+                        fflush(stdin);
+                        continue;
+                    }
+                    [gameController holdDie:number - 1];
                     fflush(stdin);
                 }else if([inputString isEqualToString:@"reset"]){
                     [gameController resetDice];
