@@ -18,6 +18,9 @@ int main(int argc, const char * argv[]) {
             printf("'roll' to roll the dice\n");
             printf("'hold' to hold a dice\n");
             printf("'reset' to un-hold all dice\n");
+            printf("'show' to see current dice\n");
+            printf("'done' to end the game\n");
+            printf("'display' to see current status\n");
             
             char str[10];
             fgets (str, 10, stdin);
@@ -31,7 +34,6 @@ int main(int argc, const char * argv[]) {
                         if(!dice.held){
                             [dice randomizeValue];
                         }
-                     
                     }
                     
                     gameController.remainingRolls -= 1;
@@ -57,6 +59,15 @@ int main(int argc, const char * argv[]) {
                     
                 }else if([inputString isEqualToString:@"reset"]){
                     [gameController resetDice];
+                }else if([inputString isEqualToString:@"show"]){
+                    NSLog(@"%@", [gameController getCurrentDice]);
+                    continue;
+                }else if([inputString isEqualToString:@"done"]){
+                    NSLog(@"Thank you for playing!");
+                    break;
+                }else if([inputString isEqualToString:@"display"]){
+                    [gameController print];
+                    continue;
                 }else{
                     NSLog(@"Enter a valid input.");
                     continue;

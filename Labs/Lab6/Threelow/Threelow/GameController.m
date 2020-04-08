@@ -49,27 +49,31 @@
     return _totalScore;
 }
 
--(void) print{
-    NSMutableString *allDice = [NSMutableString string];
+-(BOOL) isGameOver{
+    return _remainingRolls == 0;
+}
+
+-(NSMutableString *) getCurrentDice{
+    NSMutableString *currentDice = [NSMutableString string];
     
     for(Dice *dice in _diceArray){
-        [allDice appendString:[dice convertToUnicodeSymbol]];
-        [allDice appendString:@" "];
+        [currentDice appendString:[dice convertToUnicodeSymbol]];
+        [currentDice appendString:@" "];
     }
-  
+    return currentDice;
+}
+
+-(void) print{
+
     NSLog(@"Remaining Rolls: %d", (int) _remainingRolls);
     if([self isGameOver]){NSLog(@"Game Over");};
     NSLog(@"-------------------");
     NSLog(@"-- Current Dice  --");
-    NSLog(@"%@", allDice);
+    NSLog(@"%@", [self getCurrentDice]);
     NSLog(@"");
     NSLog(@"--  Total Score  --");
     NSLog(@"Score : %d", (int) [self calcScore]);
     NSLog(@"-------------------");
-}
-
--(BOOL) isGameOver{
-    return _remainingRolls == 0;
 }
 
 @end

@@ -6,6 +6,7 @@
 @property(nonatomic, strong) NSMutableArray *heldDiceArray;
 @property NSInteger totalScore;
 @property NSInteger remainingRolls;
+@property(nonatomic, strong) NSMutableString *currentDice;
 
 -(instancetype) initWithDiceArray:(NSArray *) diceArray;
 
@@ -18,5 +19,7 @@
 -(void) print;
 
 -(BOOL) isGameOver;
+
+-(NSMutableString *) getCurrentDice;
 
 @end
