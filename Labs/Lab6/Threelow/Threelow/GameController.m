@@ -9,7 +9,7 @@
         _diceArray = diceArray;
         _heldDiceArray = [NSMutableArray arrayWithCapacity:6];
         _totalScore = 0;
-    
+        _remainingRolls = 5;
     }
     return self;
 }
@@ -28,6 +28,16 @@
 
 -(void) resetDice{
     [_heldDiceArray removeAllObjects];
+    _remainingRolls = 0;
+}
+
+-(void) holdAllDice{
+    for(Dice *dice in _diceArray){
+        if(!dice.held){
+            [_heldDiceArray addObject:dice];
+            dice.held = true;
+        }
+    }
 }
 
 -(NSInteger) calcScore{
@@ -46,7 +56,9 @@
         [allDice appendString:[dice convertToUnicodeSymbol]];
         [allDice appendString:@" "];
     }
-    
+  
+    NSLog(@"Remaining Rolls: %d", (int) _remainingRolls);
+    if([self isGameOver]){NSLog(@"Game Over");};
     NSLog(@"-------------------");
     NSLog(@"-- Current Dice  --");
     NSLog(@"%@", allDice);
@@ -54,6 +66,10 @@
     NSLog(@"--  Total Score  --");
     NSLog(@"Score : %d", (int) [self calcScore]);
     NSLog(@"-------------------");
+}
+
+-(BOOL) isGameOver{
+    return _remainingRolls == 0;
 }
 
 @end

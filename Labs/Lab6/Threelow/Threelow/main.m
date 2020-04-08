@@ -13,7 +13,7 @@ int main(int argc, const char * argv[]) {
         
         GameController *gameController = [[GameController alloc] initWithDiceArray:diceArray];
         
-        while (TRUE) {
+        while (![gameController isGameOver]) {
 
             printf("'roll' to roll the dice\n");
             printf("'hold' to hold a dice\n");
@@ -28,22 +28,33 @@ int main(int argc, const char * argv[]) {
             
                 if([inputString isEqualToString:@"roll"]){
                     for(Dice *dice in gameController.diceArray){
-                        if(![gameController.heldDiceArray containsObject:dice]){
+                        if(!dice.held){
                             [dice randomizeValue];
                         }
                      
                     }
+                    
+                    gameController.remainingRolls -= 1;
+                    
+                    if([gameController isGameOver]){
+                        [gameController holdAllDice];
+                    }
+                    
                 }else if([inputString isEqualToString:@"hold"]){
+                    
                     NSLog(@"Enter the number of the die:");
                     int number;
                     scanf("%d", &number);
+                    
                     if(number < 1 || number > 5){
                         NSLog(@"The number is invalid.");
                         fflush(stdin);
                         continue;
                     }
+                    
                     [gameController holdDie:number - 1];
                     fflush(stdin);
+                    
                 }else if([inputString isEqualToString:@"reset"]){
                     [gameController resetDice];
                 }else{
