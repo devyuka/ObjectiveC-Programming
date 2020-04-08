@@ -27,8 +27,13 @@
 }
 
 -(void) resetDice{
+    for(Dice *dice in _heldDiceArray){
+        dice.held = false;
+    }
+    
     [_heldDiceArray removeAllObjects];
-    _remainingRolls = 0;
+
+    _remainingRolls = 5;
 }
 
 -(void) holdAllDice{
