@@ -8,15 +8,13 @@ typedef enum: NSUInteger {
 
 @interface Pizza : NSObject
 
-@property(nonatomic, assign) NSString *size;
+@property(nonatomic, assign) PizzaSize size;
 @property(nonatomic, strong) NSArray *toppings;
-@property(nonatomic, assign) PizzaSize pizzaSize;
 
--(instancetype) initWithSize:(NSString *) size andToppings:(NSArray *) toppings;
--(NSString *)size;
--(NSArray *)toppings;
+-(instancetype) initWithSize:(PizzaSize) size andToppings:(NSArray *) toppings;
 
 +(Pizza *) largePepperoni;
-+(Pizza *) meatLoversWithSize: (NSString *) size;
++(Pizza *) meatLoversWithSize: (PizzaSize) size;
++(PizzaSize) convertPizzaSize: (NSString *) size;
 
 @end

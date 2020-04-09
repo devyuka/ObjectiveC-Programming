@@ -11,6 +11,27 @@
 #import "Kitchen.h"
 #import "Pizza.h"
 
+
+NSString *getStringPizzaSize(PizzaSize pizzaSize){
+    switch (pizzaSize) {
+        case SMALL:
+            return @"small";
+            break;
+            
+        case MEDIUM:
+            return @"medium";
+            break;
+        
+        case LARGE:
+            return @"large";
+            break;
+            
+        default:
+            return @"small";
+            break;
+    }
+}
+
 int main(int argc, const char * argv[])
 {
 
@@ -39,8 +60,7 @@ int main(int argc, const char * argv[])
         
             // And then send some message to the kitchen...
             Pizza *pizza = [restaurantKitchen makePizzaWithSize:size commandWords:commandWords];
-            
-            NSLog(@"size: %@, toppings: %@", pizza.size, pizza.toppings);
+            NSLog(@"size: %@, toppings: %@", getStringPizzaSize(pizza.size), pizza.toppings);
         }
 
     }
