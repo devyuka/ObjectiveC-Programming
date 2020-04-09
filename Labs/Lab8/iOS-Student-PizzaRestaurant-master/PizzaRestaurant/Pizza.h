@@ -3,7 +3,8 @@
 typedef enum: NSUInteger {
     SMALL,
     MEDIUM,
-    LARGE
+    LARGE,
+    UNDEFINED
 } PizzaSize;
 
 @interface Pizza : NSObject

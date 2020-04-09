@@ -33,7 +33,7 @@
             }else if([size isEqualToString:@"large"]){
                 return LARGE;
             }else{
-                return SMALL;
+                return UNDEFINED;
             }
     return SMALL;
 }
