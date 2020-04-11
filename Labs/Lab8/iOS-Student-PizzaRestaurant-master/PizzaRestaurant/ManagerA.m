@@ -15,4 +15,9 @@
     return false;
 }
 
+-(void)kitchenDidMakePizza:(Pizza *)pizza{
+    NSLog(@"Pizza was made.");
+    [_deliveryService deliverPizza:pizza];
+}
+
 @end

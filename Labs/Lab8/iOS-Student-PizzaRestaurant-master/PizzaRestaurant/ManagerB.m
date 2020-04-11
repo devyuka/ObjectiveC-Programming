@@ -12,6 +12,7 @@
 
 -(void)kitchenDidMakePizza:(Pizza *)pizza{
     NSLog(@"Enjoy the pizza!");
+    [_deliveryService deliverPizza:pizza];
 }
 
 @end

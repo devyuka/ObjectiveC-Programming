@@ -12,6 +12,7 @@
 #import "Pizza.h"
 #import "ManagerA.h"
 #import "ManagerB.h"
+#import "DeliveryService.h"
 
 NSString *getStringPizzaSize(PizzaSize pizzaSize){
     switch (pizzaSize) {
@@ -43,11 +44,16 @@ int main(int argc, const char * argv[])
         Kitchen *restaurantKitchen = [Kitchen new];
         ManagerA *managerA = [ManagerA new];
         ManagerB *managerB = [ManagerB new];
+        DeliveryService *deliveryService = [DeliveryService new];
+        managerA.deliveryService = deliveryService;
+        managerB.deliveryService = deliveryService;
+    
         
         while (TRUE) {
             // Loop forever
             
             NSLog(@"> ");
+            NSLog(@"'show' to show delivered pizzas");
             char str01[100];
             fgets (str01, 100, stdin);
             
@@ -56,6 +62,16 @@ int main(int argc, const char * argv[])
             inputString = [inputString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             
             NSLog(@"Input was '%@'", inputString);
+            
+            if([inputString isEqualToString:@"show"]){
+                if([deliveryService.deliveredPizzas count] != 0){
+                    NSLog(@"Delivered Pizzas");
+                    for(Pizza *pizza in deliveryService.deliveredPizzas){
+                        NSLog(@"size: %@, toppings: %@", getStringPizzaSize(pizza.size), pizza.toppings);
+                    }
+                }
+                continue;
+            }
             
             // Take the first word of the command as the size, and the rest as the toppings
             NSArray *commandWords = [inputString componentsSeparatedByString:@" "];

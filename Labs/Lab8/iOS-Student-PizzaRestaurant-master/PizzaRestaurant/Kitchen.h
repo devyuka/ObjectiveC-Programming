@@ -10,7 +10,10 @@
 #import "Pizza.h"
 
 @class Kitchen;
+@class DeliveryService;
 @protocol KitchenDelegate <NSObject>
+
+@property DeliveryService *deliveryService;
 
 -(BOOL)kitchen:(Kitchen *)kitchen shouldMakePizzaOfSize:(PizzaSize)size andToppings:(NSArray *)toppings;
 -(BOOL)kitchenShouldUpgradeOrder:(Kitchen *)kitchen;
